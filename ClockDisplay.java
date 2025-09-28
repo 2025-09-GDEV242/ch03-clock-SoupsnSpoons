@@ -59,13 +59,11 @@ public class ClockDisplay
         if(minutes.getValue() == 0) {  // it just rolled over!
             hours.increment();
         }
-        updateDisplay();
-        
-        /*hours.increment();
-        if(hours.getValue() >=12) { //it's rolled over
-            hours.increment();
+
+        if(hours.getValue() >11) { //it's rolled over
+            System.out.println(hours.getDisplayValue() + ":" + minutes.getDisplayValue() + "PM");
         }
-        updateDisplay();*/
+        updateDisplay();
     }
 
     /**
