@@ -26,7 +26,9 @@ public class ClockDisplay
     
     /**
      * Constructor for ClockDisplay objects. This constructor 
-     * creates a new clock set at 00:00.
+     * creates a new clock set at 00:00. 
+     * This is the zero parameter constructor. 
+     * Tell the computer that this starting point = AM
      */
     public ClockDisplay()
     {
@@ -58,6 +60,12 @@ public class ClockDisplay
             hours.increment();
         }
         updateDisplay();
+        
+        /*hours.increment();
+        if(hours.getValue() >=12) { //it's rolled over
+            hours.increment();
+        }
+        updateDisplay();*/
     }
 
     /**
