@@ -48,6 +48,8 @@ public class ClockDisplay
     /**
      * This method should get called once every minute - it makes
      * the clock display go one minute forward.
+     * 
+     * The problem we are running into currently is the fact that once 
      */
     public void timeTick()
     {
@@ -55,6 +57,12 @@ public class ClockDisplay
         if(minutes.getValue() == 0) {  // it just rolled over!
             hours.increment();
         }
+        if(hours.getValue() >11) { //it's rolled over
+            System.out.println(hours.getDisplayValue() + ":" + minutes.getDisplayValue() + "PM");
+        }
+        /*else if(hours.getValue() >23) {
+            System.out.println(hours.getDisplayValue() + ":" + minutes.getDisplayValue() + "AM");
+        }*/
         updateDisplay();
     }
 
