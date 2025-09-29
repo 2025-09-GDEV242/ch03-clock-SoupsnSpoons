@@ -21,6 +21,7 @@ public class ClockDisplay
     private NumberDisplay hours;
     private NumberDisplay minutes;
     private String displayString;    // simulates the actual display
+    private String Meridian;
     
     /**
      * Constructor for ClockDisplay objects. This constructor 
