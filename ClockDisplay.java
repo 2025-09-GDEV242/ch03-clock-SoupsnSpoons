@@ -52,6 +52,8 @@ public class ClockDisplay
     /**
      * This method should get called once every minute - it makes
      * the clock display go one minute forward.
+     * 
+     * The meridian change goes here in this statement
      */
     public void timeTick()
     {
@@ -62,6 +64,10 @@ public class ClockDisplay
 
         if(hours.getValue() >11) { //it's rolled over
             System.out.println(hours.getDisplayValue() + ":" + minutes.getDisplayValue() + "PM");
+            hours.increment();        
+        }
+        if(hours.getValue() ==0) {
+            
         }
         updateDisplay();
     }
