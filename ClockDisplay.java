@@ -22,8 +22,8 @@ public class ClockDisplay
 {
     private NumberDisplay hours;
     private NumberDisplay minutes;
-    private String displayString;    // simulates the actual display
-    
+    private String displayString;// simulates the actual display
+    private String Meridian;// we are introducing a new concept to the computer, hence why this has been added to the class list
     /**
      * Constructor for ClockDisplay objects. This constructor 
      * creates a new clock set at 00:00. 
@@ -32,8 +32,9 @@ public class ClockDisplay
      */
     public ClockDisplay()
     {
-        hours = new NumberDisplay(24);
+        hours = new NumberDisplay(12);
         minutes = new NumberDisplay(60);
+        Meridian = "AM";
         updateDisplay();
     }
 
@@ -42,29 +43,39 @@ public class ClockDisplay
      * creates a new clock set at the time specified by the 
      * parameters.
      */
-    public ClockDisplay(int hour, int minute)
+    public ClockDisplay(int hour, int minute, String Meridian)//now that Meridian has been added to the parameters and then the constructor itself, it will appear on the display when setting the time. Next step... getting the display in the void timeTick() to show that this is here...
     {
         hours = new NumberDisplay(12);
         minutes = new NumberDisplay(60);
-        setTime(hour, minute);
+        this.Meridian = Meridian; //reference notes from week 3 to get a clearer explination on why we have to do this
+        setTime(hour, minute, Meridian);
     }
-
     /**
      * This method should get called once every minute - it makes
      * the clock display go one minute forward.
      * 
      * The meridian change goes here in this statement
+     * 
+     * This is supposed to be an if/else statement inside of an if statement to tell the computer when to change from AM to PM and vice versa. The issue is... I don't know how to do that...
      */
     public void timeTick()
     {
         minutes.increment();
         if(minutes.getValue() == 0) {  // it just rolled over!
             hours.increment();
+            if(hours.getValue()==0) { //it just rolled over!
+                if(Meridian.equals("AM")){ //reference notes from week 3 for a clearer explination as to why we have to do this
+                    Meridian = "PM";
+                }
+                else{
+                Meridian = "AM";
+            }
+            }
         }
 
-        if(hours.getValue() >11) { //it's rolled over
+        /*if(hours.getValue() >11) { //it's rolled over
             System.out.println(hours.getDisplayValue() + ":" + minutes.getDisplayValue() + "PM");       
-        }
+        }*/
         updateDisplay();
     }
 
@@ -72,10 +83,11 @@ public class ClockDisplay
      * Set the time of the display to the specified hour and
      * minute.
      */
-    public void setTime(int hour, int minute)
+    public void setTime(int hour, int minute, String Meridian)
     {
         hours.setValue(hour);
         minutes.setValue(minute);
+        this.Meridian = Meridian;
         updateDisplay();
     }
 
@@ -93,6 +105,6 @@ public class ClockDisplay
     private void updateDisplay()
     {
         displayString = hours.getDisplayValue() + ":" + 
-                        minutes.getDisplayValue();
+                        minutes.getDisplayValue() + Meridian;
     }
 }
