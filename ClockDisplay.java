@@ -31,6 +31,7 @@ public class ClockDisplay
     {
         hours = new NumberDisplay(24);
         minutes = new NumberDisplay(60);
+        this.Meridian = Meridian;
         updateDisplay();
     }
 
@@ -39,10 +40,11 @@ public class ClockDisplay
      * creates a new clock set at the time specified by the 
      * parameters.
      */
-    public ClockDisplay(int hour, int minute)
+    public ClockDisplay(int hour, int minute, String Meridian)
     {
         hours = new NumberDisplay(24);
         minutes = new NumberDisplay(60);
+        this.Meridian = Meridian;
         setTime(hour, minute);
     }
 
@@ -58,10 +60,10 @@ public class ClockDisplay
         if(minutes.getValue() == 0) {  // it just rolled over!
             hours.increment();
         }
-        if(hours.getValue() >11) { //it's rolled over
+        /*if(hours.getValue() >11) { //it's rolled over
             System.out.println(hours.getDisplayValue() + ":" + minutes.getDisplayValue() + "PM");
         }
-        /*else if(hours.getValue() >23) {
+        else if(hours.getValue() >23) {
             System.out.println(hours.getDisplayValue() + ":" + minutes.getDisplayValue() + "AM");
         }*/
         updateDisplay();
@@ -88,10 +90,13 @@ public class ClockDisplay
     
     /**
      * Update the internal string that represents the display.
+     * make over several lines for convenience
      */
     private void updateDisplay()
     {
-        displayString = hours.getDisplayValue() + ":" + 
-                        minutes.getDisplayValue();
+        displayString = "";
+        
+        /*hours.getDisplayValue() + ":" + 
+                        minutes.getDisplayValue() + Meridian;*/
     }
 }
