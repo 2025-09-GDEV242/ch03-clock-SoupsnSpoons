@@ -91,12 +91,20 @@ public class ClockDisplay
     /**
      * Update the internal string that represents the display.
      * make over several lines for convenience
+     * 
+     * at this point, the code is not working and I do not know how to fix it.
      */
     private void updateDisplay()
     {
-        displayString = "";
-        
-        /*hours.getDisplayValue() + ":" + 
-                        minutes.getDisplayValue() + Meridian;*/
+        int currentHour = hours.getValue();
+        if(currentHour>12){
+            Meridian = "PM";
+            currentHour = currentHour -12;
+        }
+        if (currentHour ==0) {
+            currentHour = 12;
+        }
+        displayString = hours.getDisplayValue() + ":" + 
+                        minutes.getDisplayValue() + Meridian;
     }
 }
